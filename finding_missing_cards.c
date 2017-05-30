@@ -1,42 +1,29 @@
-#include<stdio.h>
-int main(void)
-{
-	int card[4][13];
-	int n,i,j,l,temp;
-	char c;
-	scanf("%d",&n);
-	for(i = 0;i <= 4;i++){
-                for(j = 1;j <= 13;j++){
-			card[i][j] = 0;
-		}
-	}
-	for(i = 1;i <= n*2;i++){
-		scanf("%c %d",&c,&l);
-		if(c == 'S'){
-			card[0][l] = 1;
-		}else if(c == 'H'){
-			card[1][l] = 1;
-                }else if(c == 'C'){
-			card[2][l] = 1;
-                }else if(c == 'D'){
-			card[3][l] = 1;
-		}
-	}
-	printf("\n");
-	for(i = 0;i <= 3;i++){
-		for(j = 1;j <= 13;j++){
-			if(card[i][j] == 0){
-				if(i == 0){
-					printf("S %d\n",j);
-				}else if(i == 1){
-                                        printf("H %d\n",j);
-                                }else if(i == 2){
-                                        printf("C %d\n",j);
-                                }else if(i == 3){
-                                        printf("D %d\n",j);
-                                }
-			}
-		}
-	}
-	return 0;
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(){
+    int i, j, n;
+    char mark;
+    char marks[4]={'S', 'H', 'C', 'D'};
+    int num;
+    bool cards[4][13]={false};
+
+    scanf("%d ", &n);
+    for(i=0;i<n;i++){
+        scanf("%c %d ", &mark, &num);
+        for(j=0;j<4;j++){
+            if(mark==marks[j]){
+                cards[j][num-1]=true;
+                break;
+            }
+        }
+    }
+    for(i=0;i<4;i++){
+        for(j=0;j<13;j++){
+            if(!cards[i][j]){
+                printf("%c %d\n", marks[i], j+1);
+            }
+        }
+    }
+    return 0;
 }
